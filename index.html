@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>DataNest | Data Cleaning Studio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <aside class="sidebar"><a class="brand" href="#"><span class="logo">D</span><span>DataNest<small>DATA
+          WORKSPACE</small></span></a>
+    <p class="nav-label">WORKSPACE</p><button class="nav active" id="navTop">▦ &nbsp; Overview</button><button
+      class="nav" id="navImport">⇧ &nbsp; Import dataset</button><button class="nav" id="navTools">✧ &nbsp; Data
+      cleaning</button>
+    <div class="side-bottom">
+      <div class="tip"><b>Clean data, better insights</b>
+        <p>Good analysis starts with reliable, consistent data.</p>
+      </div><small>PERSONAL WORKSPACE</small>
+    </div>
+  </aside>
+  <main>
+    <header><span>Workspace <i>/</i> <b>Data cleaning</b></span><span class="ready">● Workspace ready</span></header>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">DATA QUALITY WORKSPACE</p>
+        <h1>Data Cleaning Studio <span>✦</span></h1>
+        <p class="sub">Find issues, fix inconsistencies, and prepare your dataset for analysis.</p>
+      </div><button class="primary" id="importBtn">＋ Import CSV</button>
+    </section>
+    <section class="stats">
+      <article><label>Total records</label><strong id="records">0</strong><small id="recordHint">Upload a dataset to
+          begin</small></article>
+      <article><label>Missing cells</label><strong id="missing">0</strong><small>Values that need attention</small>
+      </article>
+      <article><label>Duplicate rows</label><strong id="duplicates">0</strong><small>Exact repeated records</small>
+      </article>
+      <article><label>Data completeness</label><strong id="complete">—</strong>
+        <div class="progress"><span id="bar"></span></div>
+      </article>
+    </section>
+    <section class="grid">
+      <article class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Dataset preview</h2>
+            <p id="datasetInfo">Import a CSV file or load sample data.</p>
+          </div><span class="badge" id="fileBadge">NO FILE</span>
+        </div>
+        <div class="toolbar"><input id="search" placeholder="Search any value…"><select id="column">
+            <option value="all">All columns</option>
+          </select><button class="secondary" id="reset">Reset</button></div>
+        <div id="empty" class="empty">
+          <div class="upload-icon">⇧</div>
+          <h3>Start with a dataset</h3>
+          <p>Import a CSV to scan missing values, duplicate rows, and inconsistent whitespace.</p><button
+            class="primary" id="emptyImport">Choose CSV file</button> <button class="secondary" id="sample">Load sample
+            data</button>
+        </div>
+        <div class="table-wrap" id="tableWrap" hidden>
+          <table id="table"></table>
+        </div>
+        <div class="table-foot" id="tableFoot" hidden><span id="rowSummary"></span>
+          <div><button id="prev">←</button> <span id="pageInfo">1 / 1</span> <button id="next">→</button></div>
+        </div>
+      </article>
+      <article class="panel tools" id="cleaningTools">
+        <div class="panel-head">
+          <div>
+            <h2>Cleaning tools</h2>
+            <p>Choose how to prepare your data.</p>
+          </div><span class="wand">✧</span>
+        </div>
+        <div class="tool">
+          <div class="tooltitle"><span class="bubble amber">!</span>
+            <div><b>Missing values</b><small id="missingHelp">No dataset loaded</small></div>
+          </div><label>Action</label><select id="missingAction">
+            <option value="keep">Keep missing values</option>
+            <option value="remove">Remove rows with missing values</option>
+            <option value="fill">Fill with a custom value</option>
+            <option value="mean">Fill numeric columns with mean</option>
+            <option value="median">Fill numeric columns with median</option>
+            <option value="mode">Fill with most frequent value</option>
+          </select><input id="fillValue" value="Unknown" placeholder="Replacement value">
+        </div>
+        <div class="tool">
+          <div class="tooltitle"><span class="bubble violet">⧉</span>
+            <div><b>Duplicate rows</b><small id="duplicateHelp">Find repeated records</small></div>
+          </div><label class="toggle"><span>Remove duplicate rows</span><input id="removeDuplicates" type="checkbox"
+              checked><i></i></label>
+        </div>
+        <div class="tool">
+          <div class="tooltitle"><span class="bubble blue">Aa</span>
+            <div><b>Text formatting</b><small>Standardize text fields</small></div>
+          </div><label class="toggle"><span>Trim extra whitespace</span><input id="trim" type="checkbox"
+              checked><i></i></label><label class="toggle"><span>Normalize empty markers</span><input id="normalize"
+              type="checkbox" checked><i></i></label>
+        </div><button class="primary wide" id="clean" disabled>✧ &nbsp; Clean dataset</button><button
+          class="secondary wide" id="download" disabled>↓ &nbsp; Download cleaned CSV</button>
+        <p class="privacy">ⓘ Processing happens in your browser. Your data is not uploaded to a server.</p>
+      </article>
+    </section>
+    <section class="panel report" id="report" hidden>
+      <div class="panel-head">
+        <div>
+          <h2>Cleaning report</h2>
+          <p>Changes made during the latest cleaning run.</p>
+        </div><span class="success">✓ Cleaning complete</span>
+      </div>
+      <div class="report-grid" id="reportGrid"></div>
+    </section>
+    <footer><span>© 2026 DataNest</span><span>Clean data. Confident decisions.</span></footer>
+  </main><input type="file" id="file" accept=".csv,text/csv" hidden>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+
+</html>
